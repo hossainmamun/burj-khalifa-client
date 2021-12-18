@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import BookingInfo from "./components/BookingInfo/BookingInfo.js";
+import ErrorPage from "./components/ErrorPage/ErrorPage.js";
+import LoginSignUp from "./components/LoginSignUp/LoginSignUp.js";
+import MainInterface from './components/MainInterface/MainInterface.js';
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
+import RoomSelected from "./components/RoomSelected/RoomSelected.js";
+import './StyleSheet/Main.scss'
+
+export const userContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <userContext.Provider value={[loggedInUser, setLoggedInUser]} >
+      <div className="Main">
+        <Router>
+          <Switch>
+            <Route path="/home">
+              <MainInterface />
+            </Route>
+            <Route exact path="/">
+              <MainInterface />
+            </Route>
+            <PrivateRoute path="/roomSelected/:bedTypes">
+              <RoomSelected />
+            </PrivateRoute>
+            <Route path="/login">
+              <LoginSignUp />
+            </Route>
+            <Route path="/bookingInfo">
+              <BookingInfo/>
+            </Route>
+            <Route path="*">
+              <ErrorPage />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+
+    </userContext.Provider>
   );
 }
 

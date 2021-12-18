@@ -1,0 +1,16 @@
+.navbar {
+    background: transparent;
+    line-height: 45px;
+
+    .navbar-brand {
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+    }
+    .nav-link {
+        color: #fff;
+        text-transform: capitalize;
+        margin: 0 10px;
+        letter-spacing: 1px;
+    }
+}

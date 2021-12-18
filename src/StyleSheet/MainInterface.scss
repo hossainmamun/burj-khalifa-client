@@ -1,0 +1,13 @@
+.mainInterface{
+    background-image: url(../images/header.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 55vh;
+
+    .overlay{
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .7);
+    }
+}
